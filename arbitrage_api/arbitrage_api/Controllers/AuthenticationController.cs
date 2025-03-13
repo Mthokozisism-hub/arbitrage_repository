@@ -9,7 +9,7 @@ namespace arbitrage_api.Controllers
     // Marks this class as an API controller
     [ApiController]
     // Defines the base route for all endpoints in this controller
-    [Route("[controller]")]
+    [Route("Api/[controller]")]
     public class AuthenticationController : ControllerBase
     {
         // Manages user-related operations (e.g., creating users, finding users)
@@ -33,7 +33,7 @@ namespace arbitrage_api.Controllers
         }
 
         // Endpoint for user registration
-        [HttpPost("Register")]
+        [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterDto model)
         {
             // Create a new User object with the provided email and username
@@ -53,7 +53,7 @@ namespace arbitrage_api.Controllers
         }
 
         // Endpoint for user login
-        [HttpPost("Login")]
+        [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginDto model)
         {
             // Attempt to sign in the user with the provided email and password
