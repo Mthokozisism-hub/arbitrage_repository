@@ -33,7 +33,7 @@ namespace arbitrage_api.Controllers
         }
 
         // Endpoint for user registration
-        [HttpPost("register")]
+        [HttpPost("Register")]
         public async Task<IActionResult> Register([FromBody] RegisterDto model)
         {
             // Create a new User object with the provided email and username
@@ -53,7 +53,7 @@ namespace arbitrage_api.Controllers
         }
 
         // Endpoint for user login
-        [HttpPost("login")]
+        [HttpPost("Login")]
         public async Task<IActionResult> Login([FromBody] LoginDto model)
         {
             // Attempt to sign in the user with the provided email and password

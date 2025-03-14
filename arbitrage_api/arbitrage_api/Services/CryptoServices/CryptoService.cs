@@ -99,8 +99,8 @@ namespace arbitrage_api.Services.CryptoServices
 
             var arbitrageRatio = CalculateArbitrage(zarBid, usdAsk, exchangeRate);
 
-            //save data to database 
-            await _context.CryptoArbitrages.AddAsync(new CryptoArbitrage
+            //save data to database , just realised theres no need to keep this data
+            /*await _context.CryptoArbitrages.AddAsync(new CryptoArbitrage
             {
                 CryptoName = criptoName,
                 BitstampAskPrice = usdAsk,
@@ -110,7 +110,7 @@ namespace arbitrage_api.Services.CryptoServices
                 Timestamp = DateTime.Now
             });
             //save changes
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();*/  
 
 
             return new ArbitrageDto

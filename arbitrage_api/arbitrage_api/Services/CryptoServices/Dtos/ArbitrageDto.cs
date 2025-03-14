@@ -6,7 +6,7 @@
         public decimal ValrBidPrice { get; set; }
         public decimal ExchangeRate { get; set; }
         public decimal ArbitrageRatio { get; set; }
-        public DateTime? DateTime { get; set; }
+        public DateTime? Timestamp { get; set; }
 
     }
 }

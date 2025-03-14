@@ -8,9 +8,9 @@ namespace arbitrage_api.Controllers
 {
     // Marks this class as an API controller
     [ApiController]
-    [Authorize]
+    //[Authorize]
     // Defines the base route for all endpoints in this controller
-    [Route("api/arbitrage")]
+    [Route("Api/[controller]")]
     public class ArbitrageController : ControllerBase
     {
         // Service responsible for fetching and calculating crypto arbitrage data
@@ -24,7 +24,7 @@ namespace arbitrage_api.Controllers
         }
 
         // Endpoint to get Bitcoin arbitrage data
-        [HttpGet("bitcoin")]
+        [HttpGet("Bitcoin")]
         public async Task<IActionResult> GetBitcoinArbitrage()
         {
             // Fetch and calculate Bitcoin arbitrage data using the crypto price service
@@ -39,7 +39,8 @@ namespace arbitrage_api.Controllers
         }
 
         // Endpoint to get XRP arbitrage data
-        [HttpGet("xrp")]
+
+        [HttpGet("Xrp")]
         public async Task<IActionResult> GetXrpArbitrage()
         {
             // Fetch and calculate XRP arbitrage data using the crypto price service

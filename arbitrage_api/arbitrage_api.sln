@@ -5,6 +5,8 @@ VisualStudioVersion = 17.11.35208.52
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "arbitrage_api", "arbitrage_api\arbitrage_api.csproj", "{0C763646-D29D-40DB-80AD-C15594C9BDCC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "arbitrage_api_test", "arbitrage_api_test\arbitrage_api_test.csproj", "{1D42F951-C0F0-43CF-8CB8-229100C3B834}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{0C763646-D29D-40DB-80AD-C15594C9BDCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C763646-D29D-40DB-80AD-C15594C9BDCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C763646-D29D-40DB-80AD-C15594C9BDCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D42F951-C0F0-43CF-8CB8-229100C3B834}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D42F951-C0F0-43CF-8CB8-229100C3B834}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D42F951-C0F0-43CF-8CB8-229100C3B834}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D42F951-C0F0-43CF-8CB8-229100C3B834}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
