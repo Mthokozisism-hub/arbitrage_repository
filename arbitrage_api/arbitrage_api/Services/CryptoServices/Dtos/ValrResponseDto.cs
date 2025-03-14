@@ -2,17 +2,17 @@
 {
     public class ValrResponseDto
     {
-        public string Timestamp { get; set; }
-        public decimal Open { get; set; }    
-        public decimal High { get; set; }   
-        public decimal Low { get; set; }    
-        public decimal Last { get; set; }    
-        public decimal Volume { get; set; }  
-        public decimal Vwap { get; set; }   
-        public decimal Bid { get; set; }     
-        public decimal Ask { get; set; }     
-        public int Side { get; set; }        
-        public decimal Open24 { get; set; }  
-        public decimal PercentChange24 { get; set; } 
+        public string CurrencyPair { get; set; }       
+        public string AskPrice { get; set; } 
+        public string BidPrice { get; set; }         
+        public string LastTradedPrice { get; set; }  
+        public string PreviousClosePrice { get; set; } 
+        public string BaseVolume { get; set; }   
+        public string QuoteVolume { get; set; } 
+        public string HighPrice { get; set; }  
+        public string LowPrice { get; set; }       
+        public DateTime Created { get; set; }        
+        public string ChangeFromPrevious { get; set; } 
+        public string MarkPrice { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace arbitrage_api.Controllers
     // Marks this class as an API controller
     [ApiController]
     // Defines the base route for all endpoints in this controller
-    [Route("[controller]")]
+    [Route("Api/[controller]")]
     public class AuthenticationController : ControllerBase
     {
         // Manages user-related operations (e.g., creating users, finding users)
