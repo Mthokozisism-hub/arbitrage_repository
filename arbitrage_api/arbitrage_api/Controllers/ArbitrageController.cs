@@ -1,14 +1,15 @@
 ﻿using arbitrage_api.Services.CryptoServices;
 using arbitrage_api.Services.CryptoServices.Dtos;
 using arbitrage_api.Utils;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace arbitrage_api.Controllers
 {
     // Marks this class as an API controller
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
-    //[Authorize]
     // Defines the base route for all endpoints in this controller
     [Route("Api/[controller]")]
     public class ArbitrageController : ControllerBase
