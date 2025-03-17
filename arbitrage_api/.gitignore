@@ -15,10 +15,6 @@ obj/
 *.log
 logs/
 
-# Configuration Files
-appsettings.json
-appsettings.*.json
-
 # Packages
 *.nupkg
 *.snupkg
