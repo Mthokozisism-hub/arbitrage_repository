@@ -30,6 +30,7 @@ builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
 })
 .AddJwtBearer(options =>
 {
@@ -43,48 +44,66 @@ builder.Services.AddAuthentication(options =>
         ValidAudience = jwtSettings.Audience,
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Secret))
     };
+
+    options.Events = new JwtBearerEvents
+    {
+        OnChallenge = context =>
+        {
+            context.HandleResponse();
+            context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+            context.Response.ContentType = "application/json";
+            var result = System.Text.Json.JsonSerializer.Serialize(new { message = "Unauthorized" });
+            return context.Response.WriteAsync(result);
+        },
+    };
 });
 
-//Add Identity
+// Add Identity
 builder.Services.AddIdentity<User, IdentityRole>()
     .AddEntityFrameworkStores<ArbitrageDbContext>()
     .AddDefaultTokenProviders();
 
-//register ArbitrageDbContext 
+// Register ArbitrageDbContext 
 builder.Services.AddDbContext<ArbitrageDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-//register services
-builder.Services.AddHttpClient<ICryptoService,CryptoService>();
+// Register services
+builder.Services.AddHttpClient<ICryptoService, CryptoService>();
 builder.Services.AddScoped<IAuthTokenService, AuthTokenService>();
+
+// Configure CORS
+var allowedOrigins = builder.Configuration["CorsOrigins"]?.Split(';') ?? Array.Empty<string>();
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAllOrigins",
-        builder =>
-        {
-            builder.AllowAnyOrigin()
-                   .AllowAnyMethod()
-                   .AllowAnyHeader();
-        });
+    options.AddPolicy("AllowSpecificOrigins", builder =>
+    {
+        builder.WithOrigins(allowedOrigins)
+               .AllowAnyMethod()
+               .AllowAnyHeader()
+               .AllowCredentials();
+    });
 });
+
 var app = builder.Build();
+
+// Middleware pipeline
+app.UseHttpsRedirection();
+app.UseCors("AllowSpecificOrigins"); // Use the specific CORS policy
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.Use(async (context, next) =>
 {
     Console.WriteLine($"Request: {context.Request.Path}");
     await next();
 });
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.UseCors("AllowAllOrigins");
-app.UseHttpsRedirection();
-
-app.UseAuthentication();
-app.UseAuthorization();
 
 app.MapControllers();
 
